@@ -1,0 +1,1140 @@
+/* เพิ่มตัวแปรสีเพื่อใช้ทั่วไฟล์ */
+:root {
+  --primary-color: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --secondary-color: #ec4899;
+  --secondary-light: #f472b6;
+  --secondary-dark: #db2777;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+  --bg-color: #f8fafc;
+  --text-color: #1e293b;
+  --muted-color: #64748b;
+  --light-border: rgba(203, 213, 225, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* พื้นฐานสำหรับทั้งเอกสาร - ใช้สไตล์ Glassmorphism */
+body {
+  font-family: 'Kanit', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  background-attachment: fixed;
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* เพิ่มพื้นหลังแบบ Mesh Gradient */
+body::before {
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    125deg,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(236, 72, 153, 0.15) 30%,
+    rgba(16, 185, 129, 0.15) 70%,
+    rgba(59, 130, 246, 0.15) 100%
+  );
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* ส่วนคอนเทนเนอร์หลัก */
+.dash-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+}
+
+/* ปรับปรุงการมองเห็นของตาราง - ใช้ glassmorphism */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner table {
+  font-family: 'Kanit', 'Prompt', sans-serif !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  width: 100%;
+  box-shadow: var(--card-shadow);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--light-border);
+}
+
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner th {
+  font-weight: 600 !important;
+  text-align: left !important;
+  background: rgba(99, 102, 241, 0.85) !important;
+  color: white !important;
+  padding: 16px !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner td {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--light-border) !important;
+  transition: all 0.2s ease;
+}
+
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:hover td {
+  background-color: rgba(99, 102, 241, 0.05) !important;
+}
+
+/* ปรับแต่งแท็บเมนู - ใช้ glassmorphism */
+.dash-tabs {
+  overflow: visible !important;
+}
+
+.dash-tab {
+  padding: 14px 28px !important;
+  border-radius: 12px 12px 0 0 !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid var(--light-border) !important;
+  border-bottom: none !important;
+  margin-right: 4px !important;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: var(--text-color) !important;
+}
+
+.dash-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.dash-tab:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.dash-tab--selected {
+  background: rgba(99, 102, 241, 0.9) !important;
+  color: white !important;
+  border-bottom: none !important;
+  font-weight: 600 !important;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dash-tab--selected::after {
+  transform: scaleX(1);
+  background: white;
+}
+
+.dash-tab-content {
+  padding: 32px !important;
+  border: 1px solid var(--light-border) !important;
+  border-top: none !important;
+  border-radius: 0 0 16px 16px !important;
+  box-shadow: var(--card-shadow) !important;
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* ปรับแต่งหัวเรื่อง - ใช้ typography ที่ทันสมัย */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-color);
+  text-align: center;
+  margin: 30px 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 4px;
+  bottom: -10px;
+  left: 30%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: 36px;
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-top: 28px;
+  margin-bottom: 18px;
+  position: relative;
+  padding-left: 16px;
+  letter-spacing: -0.01em;
+}
+
+h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+/* ปรับแต่ง Dropdown */
+.Select-control {
+  border: 1px solid var(--light-border) !important;
+  border-radius: 12px !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.Select-control:hover {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.15) !important;
+}
+
+.Select-menu-outer {
+  border-radius: 0 0 12px 12px !important;
+  border: 1px solid var(--light-border) !important;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.Select-option {
+  padding: 12px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.Select-option.is-focused {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+.Select-option.is-selected {
+  background-color: rgba(99, 102, 241, 0.2) !important;
+  font-weight: 500 !important;
+}
+
+/* ปรับแต่งกราฟและแผนภูมิ */
+.js-plotly-plot .plotly {
+  border-radius: 16px !important;
+  box-shadow: var(--card-shadow) !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--light-border) !important;
+}
+
+.js-plotly-plot .plotly:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* สไตล์การ์ด - ใช้ glassmorphism */
+.card, .dashboard-card {
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 30px;
+  margin-bottom: 32px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border: 1px solid var(--light-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before, .dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0.5);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  opacity: 0.9;
+}
+
+.card:hover::before, .dashboard-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover, .dashboard-card:hover {
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+}
+
+/* คลาสสีพื้นหลัง - ใช้สีสดใสแบบพาสเทลพร้อม glassmorphism */
+.bg-primary { 
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-success { 
+  background: linear-gradient(135deg, var(--success-color) 0%, #34d399 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-warning { 
+  background: linear-gradient(135deg, var(--warning-color) 0%, #fbbf24 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-danger { 
+  background: linear-gradient(135deg, var(--danger-color) 0%, #f87171 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-info { 
+  background: linear-gradient(135deg, var(--info-color) 0%, #60a5fa 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-light { 
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.bg-dark { 
+  background: linear-gradient(135deg, var(--text-color) 0%, #0f172a 100%);
+  color: white;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* คลาสสีข้อความ - เกรเดียนต์สดใส */
+.text-primary { 
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-success { 
+  background: linear-gradient(135deg, var(--success-color) 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-warning { 
+  background: linear-gradient(135deg, var(--warning-color) 0%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-danger { 
+  background: linear-gradient(135deg, var(--danger-color) 0%, #f87171 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-info { 
+  background: linear-gradient(135deg, var(--info-color) 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-muted { color: var(--muted-color); }
+
+/* การ์ดสถิติ - ใช้ glassmorphism */
+.stat-card {
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--light-border);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  transform: scaleX(0.7);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card .value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 16px 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.stat-card .label {
+  color: var(--muted-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ปรับแต่งปุ่ม - glassmorphism style */
+button {
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--light-border);
+  outline: none;
+  font-family: 'Kanit', 'Prompt', sans-serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: -1;
+}
+
+button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+  border: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--success-color) 0%, #34d399 100%);
+  color: white;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+  border: none;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, var(--warning-color) 0%, #fbbf24 100%);
+  color: white;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+  border: none;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger-color) 0%, #f87171 100%);
+  color: white;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+  border: none;
+}
+
+/* อนิเมชันสวยงาม */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.float-up {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+/* ปรับแต่งลิสต์ */
+ul, ol {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+ul li {
+  list-style-type: none;
+  padding-left: 28px;
+}
+
+ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
+}
+
+/* ปรับสไตล์เพิ่มเติมสำหรับอธิบายคุณลักษณะ */
+.feature-description {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+  border-left: 5px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature-description::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+}
+
+/* ปรับแต่งตารางอธิบาย */
+.description-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--light-border);
+}
+
+.description-table th {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%) !important;
+  color: white !important;
+  padding: 16px !important;
+  text-align: left !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.description-table td {
+  padding: 16px !important;
+  border-bottom: 1px solid var(--light-border) !important;
+  transition: background-color 0.2s ease;
+}
+
+.description-table tr:last-child td {
+  border-bottom: none !important;
+}
+
+.description-table tr:nth-child(even) {
+  background-color: rgba(99, 102, 241, 0.05) !important;
+}
+
+.description-table tr:hover td {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Tooltip สวยงาม */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 15px;
+  background: rgba(15, 23, 42, 0.8);
+  color: white;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  border-width: 6px;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.8) transparent transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* เพิ่มแอนิเมชั่นสมูทขึ้น */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ปรับธีมสีเพิ่มเติมแบบ Neumorphism */
+.neu-card {
+  background: var(--bg-color);
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1),
+              -10px -10px 20px rgba(255, 255, 255, 0.7);
+  padding: 24px;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.neu-card:hover {
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15),
+              -15px -15px 30px rgba(255, 255, 255, 0.8);
+}
+
+/* ปรับปรุง Typography เพิ่มเติม */
+.display-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--muted-color);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.quote {
+  font-style: italic;
+  position: relative;
+  padding: 1.5rem 2rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  border-left: 4px solid var(--primary-color);
+  background: rgba(255, 255, 255, 0.5);
+  margin: 2rem 0;
+  border-radius: 0 12px 12px 0;
+}
+
+.quote::before {
+  content: '"';
+  font-size: 4rem;
+  position: absolute;
+  left: 0.5rem;
+  top: -1rem;
+  opacity: 0.2;
+  color: var(--primary-color);
+  font-family: 'Georgia', serif;
+}
+
+/* เพิ่มเทคนิคการจัดวาง - CSS Grid & Flexbox */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin: 2rem 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.flex-item {
+  flex: 1 1 280px;
+  max-width: 100%;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ปรับแต่งการ์ดเพิ่มเติม - Glassmorphism แบบสมบูรณ์ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  padding: 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(31, 38, 135, 0.3);
+}
+
+/* เพิ่มเอฟเฟกต์พิเศษ - ปุ่มเรืองแสง */
+.glow-button {
+  position: relative;
+  padding: 12px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  box-shadow: 0 5px 15px rgba(107, 33, 168, 0.4);
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: all 0.6s ease;
+}
+
+.glow-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(107, 33, 168, 0.6);
+}
+
+.glow-button:hover::before {
+  left: 100%;
+}
+
+/* เพิ่มเอฟเฟกต์พิเศษ - Badge แบบ Floating */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  margin-right: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badge.floating {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+}
+
+.badge-secondary {
+  background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+}
+
+.badge-success {
+  background: linear-gradient(135deg, var(--success-color), #34d399);
+}
+
+/* สร้าง Loading Indicator สวยงาม */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(99, 102, 241, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: rotate 1s linear infinite;
+  margin: 20px auto;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  animation: shimmer 2s infinite linear;
+  background-size: 200% 100%;
+}
+
+/* ปรับการเปลี่ยนผ่านระหว่างการเลือก Tab */
+.dash-tab-content {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tab-entering {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.tab-entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* เพิ่มเอฟเฟกต์สำหรับการ์ด Hover */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* เพิ่มรูปแบบการแสดงข้อมูลเชิงลึก */
+.insight-block {
+  border-left: 4px solid var(--primary-color);
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: 20px 0;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-block::before {
+  content: '💡';
+  font-size: 1.2rem;
+  margin-right: 10px;
+  opacity: 0.8;
+}
+
+/* เพิ่ม Media Queries สำหรับ Responsive Design */
+@media (max-width: 992px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
+  
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .card, .dashboard-card, .glass-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dash-container {
+    padding: 16px;
+  }
+  
+  .stat-card .value {
+    font-size: 2rem;
+  }
+  
+  .stat-card {
+    padding: 20px;
+  }
+  
+  .dash-tab {
+    padding: 10px 20px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 0.9rem;
+  }
+  
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.3rem; }
+  
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+}
+
+/* ปรับแต่งแถบเลื่อน (Scrollbar) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.8);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--primary-light), var(--primary-color));
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--primary-color), var(--primary-dark));
+}
+
+/* เพิ่มเอฟเฟกต์ Text Gradient สวยงาม */
+.gradient-text {
+  background: linear-gradient(120deg, var(--primary-color), var(--secondary-color), var(--info-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: textShimmer 3s linear infinite;
+}
+
+@keyframes textShimmer {
+  to { background-position: 200% center; }
+}
+
+/* เอฟเฟกต์คลิก Ripple สำหรับปุ่มและการ์ด */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.8s;
+}
+
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
